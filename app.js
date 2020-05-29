@@ -34,33 +34,54 @@ inquirer.prompt([
     },
 
 ])
-.then(function)
+.then(function(answers){
+    new Employee();
+    if (answers.role === "Manager") {
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "What is your office number?",
+                name: "officeNumber"
+            },
+        ])
+            .then (function(managerData){
+                new Manager()
+            })
+
+        }
+    else if (answers.role === "Engineer"){
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "What is your github username?",
+                name: "github"
+            },
+        ])
+        .then (function(engineerData){
+            new Engineer()
+        })
+    }
+    else if (answers.role === "Intern"){
+        inquirer.prompt([
+            {
+                type: "input",
+                message: "What school are you attending?",
+                name: "school"
+            },
+        ])
+            .then (function(internData){
+                new Intern()
+            })
+
+    
+    }
 
 
 
-inquirer.prompt(
-{
-    type: "input",
-    message: "What school are you attending?",
-    name: "school"
-})
-.then
 
-inquirer.prompt(
-    {
-        type: "input",
-        message: "What is your github username?",
-        name: "github"
-    })
-.then
 
-inquirer.prompt(
-    {
-        type: "input",
-        message: "What is your office number?",
-        name: "officeNumber"
-    })
-.then
+
+
 
 
 
