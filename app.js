@@ -1,4 +1,4 @@
-const Manager = require("./lib/Manager");
+const Manager = require("./lib/Manager").default;
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
@@ -9,6 +9,57 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+
+inquirer.prompt([
+    {
+        type : "input",
+        message : "What is the name of the Employee?",
+        name : "name",
+    },
+    {   
+        type : "input",
+        message : "What is the Employee's number?",
+        name : "number",
+    },
+    {   
+        type :"input",
+        message : "What is the Employee's email address?",
+        name: "email",
+    },
+    {
+        type: "list",
+        message: "What is the role of the Employee?",
+        choices: ["Manager", "Engineer", "Intern"],
+        name: "role"
+    },
+
+])
+.then(function)
+
+
+// 
+inquirer.prompt(
+{
+    type: "input",
+    message: "What school are you attending?",
+    name: "school"
+})
+
+inquirer.prompt(
+    {
+        type: "input",
+        message: "What is your github username?",
+        name: "github"
+    })
+
+inquirer.prompt(
+    {
+        type: "input",
+        message: "What is your office number?",
+        name: "officeNumber"
+    })
+    
+
 
 
 // Write code to use inquirer to gather information about the development team members,
