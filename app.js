@@ -37,13 +37,14 @@ inquirer.prompt([
 .then(function)
 
 
-// 
+
 inquirer.prompt(
 {
     type: "input",
     message: "What school are you attending?",
     name: "school"
 })
+.then
 
 inquirer.prompt(
     {
@@ -51,6 +52,7 @@ inquirer.prompt(
         message: "What is your github username?",
         name: "github"
     })
+.then
 
 inquirer.prompt(
     {
@@ -58,7 +60,7 @@ inquirer.prompt(
         message: "What is your office number?",
         name: "officeNumber"
     })
-    
+.then
 
 
 
