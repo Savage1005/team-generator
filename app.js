@@ -10,72 +10,137 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-inquirer.prompt([
+const team = []
+
+function teamBuild() {
+  inquirer.prompt([
     {
         type : "input",
-        message : "What is the name of the Employee?",
+        message : "What is the name of the team's manager?",
         name : "name",
     },
     {   
         type : "input",
-        message : "What is the Employee's number?",
-        name : "number",
+        message : "What is the manager's employee id number?",
+        name : "id",
     },
     {   
         type :"input",
-        message : "What is the Employee's email address?",
+        message : "What is the manager's email address?",
         name: "email",
     },
     {
-        type: "list",
-        message: "What is the role of the Employee?",
-        choices: ["Manager", "Engineer", "Intern"],
-        name: "role"
+        type: "input",
+        message: "What is the manager's office number?",
+        name: "officeNumber",
     },
+  ])
 
-])
-.then(function(answers){
-    new Employee();
-    if (answers.role === "Manager") {
-        inquirer.prompt([
-            {
-                type: "input",
-                message: "What is your office number?",
-                name: "officeNumber"
-            },
-        ])
-            .then (function(managerData){
-                new Manager()
-            })
+  .then(function(answers){
+   const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+   team.push(manager);
+   addNewMember()
+})}
 
+ function addNewMember(){
+    inquirer.prompt ([{
+        type: "list",
+        message: "Would you like to add an Employee?",
+        choices: ["Engineer", "Intern", "No More"],
+        name: "role"
+        },
+    ])
+    .then(function(answers){
+        if (answers.role === "Engineer"){
+            engineerPrompt();}
+        else if (answers.role === "Intern"){
+            internPrompt();}
+        else {
+            renderTeam();
         }
-    else if (answers.role === "Engineer"){
-        inquirer.prompt([
-            {
-                type: "input",
-                message: "What is your github username?",
-                name: "github"
-            },
-        ])
-        .then (function(engineerData){
-            new Engineer()
+        })
+        
+    }  
+
+    function engineerPrompt(){
+        inquirer.prompt([{
+            type: "input",
+            message: "What is the name?",
+            name: "name"
+        },
+        {
+            type: "input",
+            message: "Id number?",
+            name: "id",
+        },
+        {   
+            type: "input",
+            message: "What is the email address?",
+            name: "email",
+        },
+        {
+            type: "input",
+            message: "What is the github?",
+            name: "github",
+        },])
+        .then (function(answers){
+            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+            team.push(engineer);
+            addNewMember()
         })
     }
-    else if (answers.role === "Intern"){
-        inquirer.prompt([
-            {
-                type: "input",
-                message: "What school are you attending?",
-                name: "school"
-            },
-        ])
-            .then (function(internData){
-                new Intern()
-            })
 
     
-    }
-})
+
+
+  teamBuild(); 
+    
+//     
+// ])
+// .then(function(answers){
+//     console.log(answers)})
+//     var newEmployee = new Employee(answers.name, answers.id, answers.email);
+//     if (answers.role === "Manager") {
+//         inquirer.prompt([
+//             {
+//                 type: "input",
+//                 message: "What is your office number?",
+//                 name: "officeNumber"
+//             },
+//         ])
+//             .then (function(managerData){
+//             var newManager =new Manager(answers.name, answers.id, answers.email, managerData.officeNumber)
+//             })
+
+//         }
+//     else if (answers.role === "Engineer"){
+//         inquirer.prompt([
+//             {
+//                 type: "input",
+//                 message: "What is your github username?",
+//                 name: "github"
+//             },
+//         ])
+//         .then (function(engineerData){
+//             var newEngineer = new Engineer(answers.name, answers.id, answers.email, engineerData.github)
+//         })
+//     }
+//     else if (answers.role === "Intern"){
+//         inquirer.prompt([
+//             {
+//                 type: "input",
+//                 message: "What school are you attending?",
+//                 name: "school"
+//             },
+//         ])
+//             .then (function(internData){
+//                 var newIntern = new Intern(answers.name, answers.id, answers.email, internData.school)
+//             })
+
+    
+//     }
+// }
+
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -99,4 +164,4 @@ inquirer.prompt([
 // and Intern classes should all extend from a class named Employee; see the directions
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+// for the provided `render` function to work! 
