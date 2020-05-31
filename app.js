@@ -60,7 +60,7 @@ function teamBuild() {
         }
         })
         
-    }  
+    };
 
     function engineerPrompt(){
         inquirer.prompt([{
@@ -88,9 +88,43 @@ function teamBuild() {
             team.push(engineer);
             addNewMember()
         })
-    }
+    };
 
+function internPrompt(){
+    inquirer.prompt([
+        {
+        type: "input",
+        message: "What is the employee name?",
+        name: "name"
+    },
+    {
+        type: "input",
+        message: "Id number?",
+        name: "id",
+    },
+    {   
+        type: "input",
+        message: "What is the email address?",
+        name: "email",
+    },
+    {
+        type: "input",
+        message: "What school did the employee attend?",
+        name: "school",
+    },])
+    .then (function(answers){
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+        team.push(intern);
+        addNewMember()
+    })
     
+};
+
+function renderTeam(){
+    i
+
+}
+
 
 
   teamBuild(); 
