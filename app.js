@@ -12,6 +12,8 @@ const render = require("./lib/htmlRenderer");
 
 const team = []
 
+
+//start of teambuilding, manager prompt
 function teamBuild() {
   inquirer.prompt([
     {
@@ -42,6 +44,9 @@ function teamBuild() {
    addNewMember()
 })}
 
+
+//prompt to add new team members
+
  function addNewMember(){
     inquirer.prompt ([{
         type: "list",
@@ -61,6 +66,8 @@ function teamBuild() {
         })
         
     };
+
+    //prompt for engineer
 
     function engineerPrompt(){
         inquirer.prompt([{
@@ -90,7 +97,9 @@ function teamBuild() {
         })
     };
 
-function internPrompt(){
+    //prompt for intern
+
+    function internPrompt(){
     inquirer.prompt([
         {
         type: "input",
@@ -119,6 +128,8 @@ function internPrompt(){
     })
     
 };
+
+//rendering the team
 
 function renderTeam(){
     fs.writeFile(outputPath, render(team), function(err){
