@@ -121,13 +121,14 @@ function internPrompt(){
 };
 
 function renderTeam(){
-    i
+    fs.writeFile(outputPath, render(team), function(err){
+        if (err){
+        return console.log(err)}
+         console.log("Success!")});
+        }
 
-}
 
-
-
-  teamBuild(); 
+    teamBuild(); 
     
 //     
 // ])
