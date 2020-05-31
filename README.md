@@ -27,7 +27,7 @@ npm i
 
 ## Usage
 
-The html will generate in the output file called team.html.  Prompts are set up for each team member and will generate in cards.  For each team there will be a manager and any number of employees.  
+To run the program you must type "node app.js" in the parent directory. The html will generate in the output file called team.html.  Prompts are set up for each team member and will generate in cards.  For each team there will be a manager and any number of employees.  
 
 ## License
 
